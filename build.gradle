@@ -24,7 +24,6 @@ allprojects {
 }
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
     apply from: "${rootDir}/dependencies.gradle"
 
     project.group = "com.breedish.zs"
