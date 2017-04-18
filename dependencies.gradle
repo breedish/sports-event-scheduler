@@ -1,9 +1,9 @@
 ext {
     dependenciesVersion = [
-            
+            testNg: '6.1.1'
     ]
 
     sharedDependencies = [
-            
+            testNg: "org.testng:testng:${dependenciesVersion.testNg}"
     ]
 }
