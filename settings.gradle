@@ -1,4 +1,3 @@
 rootProject.name="zsports-ses"
 
-include 'ses-player-api'
 include 'ses-player-service'

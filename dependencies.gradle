@@ -1,9 +1,59 @@
 ext {
     dependenciesVersion = [
-            testNg: '6.1.1'
+            testNg           : '6.1.1',
+            lombok           : '1.16.2',
+            springBootVersion: '1.5.2.RELEASE',
+            aspectjVersion   : '1.8.4',
+            yamlVersion      : '1.17',
+            mockitoVersion   : '2.0.2-beta',
+            h2Version        : '1.4.192',
+            logbackVersion   : '1.2.3',
+            slf4jVersion     : '1.7.21',
+            jacksonVersion   : '2.8.3',
+            hibernateVersion : '5.2.1.Final',
+            postgresql       : '9.4.1212'
     ]
 
     sharedDependencies = [
-            testNg: "org.testng:testng:${dependenciesVersion.testNg}"
+            boot : [
+                    springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
+                    starterWeb      : "org.springframework.boot:spring-boot-starter-web:$springBootVersion",
+                    starterJetty    : "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion",
+                    starterSecurity : "org.springframework.boot:spring-boot-starter-security:$springBootVersion",
+                    starterJpa      : "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion",
+                    starterTest     : "org.springframework.boot:spring-boot-starter-test:$springBootVersion",
+                    starterTomcat   : "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion",
+                    actuator        : "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion",
+                    starterWs       : "org.springframework.boot:spring-boot-starter-ws:$springBootVersion",
+                    yaml            : "org.yaml:snakeyaml:${dependenciesVersion.yamlVersion}",
+                    devtools        : "org.springframework.boot:spring-boot-devtools:$springBootVersion",
+                    mq              : "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
+            ],
+            tests: [
+                    testNg      : "org.testng:testng:${dependenciesVersion.testNg}",
+                    mockito     : "org.mockito:mockito-all:${dependenciesVersion.mockitoVersion}",
+                    hamcrestCore: "org.hamcrest:hamcrest-core:1.3",
+                    hamcrestLib : "org.hamcrest:hamcrest-library:1.3"
+            ],
+            log  : [
+                    slf4jApi: "org.slf4j:slf4j-api:${dependenciesVersion.slf4jVersion}",
+                    logback : "ch.qos.logback:logback-classic:${dependenciesVersion.logbackVersion}",
+            ],
+            misc : [
+                    h2                : "com.h2database:h2:${dependenciesVersion.h2Version}",
+                    postgresql        : "org.postgresql:postgresql:${dependenciesVersion.postgresql}",
+                    lombok            : "org.projectlombok:lombok:${dependenciesVersion.lombok}",
+                    jacksonCore       : "com.fasterxml.jackson.core:jackson-core:${dependenciesVersion.jacksonVersion}",
+                    jacksonDatabind   : "com.fasterxml.jackson.core:jackson-databind:${dependenciesVersion.jacksonVersion}",
+                    jacksonAnnotations: "com.fasterxml.jackson.core:jackson-annotations:${dependenciesVersion.jacksonVersion}",
+                    jacksonJsr310     : "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${dependenciesVersion.jacksonVersion}",
+                    aspectjweaver     : "org.aspectj:aspectjweaver:${dependenciesVersion.aspectjVersion}",
+                    aspectjrt         : "org.aspectj:aspectjrt:${dependenciesVersion.aspectjVersion}",
+                    commons           : "org.apache.commons:commons-lang3:3.4",
+                    cglib             : "cglib:cglib:3.2.2",
+                    hikari            : "com.zaxxer:HikariCP:2.6.1",
+                    dsProxy           : "net.ttddyy:datasource-proxy:1.4.1",
+                    flyway            : "org.flywaydb:flyway-core:4.2.0"
+            ]
     ]
 }
