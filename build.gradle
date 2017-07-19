@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.2.RELEASE'
+        springBootVersion = '1.5.4.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
     }
 }
 
@@ -21,6 +22,8 @@ allprojects {
 }
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
     apply from: "${rootDir}/dependencies.gradle"
 
     project.group = "com.breedish.zs"
@@ -28,7 +31,14 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR1'
+        }
+    }
+
     dependencies {
+        compile 'org.springframework.cloud:spring-cloud-starter-config'
         sharedDependencies.with {
             compileOnly misc.lombok
             testCompile tests.testNg, tests.mockito, tests.hamcrestCore, tests.hamcrestLib
@@ -37,5 +47,11 @@ subprojects {
 
     test {
         useTestNG()
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            failOnVersionConflict()
+        }
     }
 }

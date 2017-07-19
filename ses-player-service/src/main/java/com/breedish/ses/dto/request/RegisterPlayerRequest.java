@@ -1,14 +1,17 @@
 package com.breedish.ses.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.Tolerate;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegisterPlayerRequest {
     @NotBlank
     private String name;
@@ -20,8 +23,4 @@ public class RegisterPlayerRequest {
     private String lastName;
     @Length(min = 7, max = 15)
     private String phone;
-
-    @Tolerate
-    RegisterPlayerRequest() {
-    }
 }

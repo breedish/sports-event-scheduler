@@ -1,32 +1,7 @@
 spring.application.name: playerservice
-spring.profiles.active: default
-spring.cloud.config.uri: http://localhost:8888
+spring.profiles.active: aws
 
 server.contextPath: /players
-server.port: 8080
 
 management.port: 8081
 management.security.enabled: false
-
-spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration
-
-spring.datasource.driverClassName: org.postgresql.Driver
-spring.datasource.url: jdbc:postgresql://127.0.0.1:5432/zsports
-spring.datasource.username: zenind
-spring.datasource.password: test
-spring.datasource.testWhileIdle: true
-spring.datasource.validationQuery: SELECT 1; ALTER SESSION SET CURRENT_SCHEMA=" + schema;
-spring.datasource.hikari.connection-test-query: SELECT 1
-spring.datasource.type: com.zaxxer.hikari.HikariDataSource
-spring.datasource.platform: postgres
-
-spring.jpa.database: POSTGRESQL
-spring.jpa.show-sql: false
-spring.jpa.generate-ddl: false
-spring.jpa.hibernate.ddl-auto: none #none
-spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.properties.hibernate.default_schema: ses
-spring.jpa.properties.hibernate.implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
-spring.jpa.properties.hibernate.physical_naming_strategy: com.breedish.ses.config.db.AppNamingStrategy
-
-flyway.schemas: ses

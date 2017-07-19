@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: configservice
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://breedish@bitbucket.org/breedish-ses/ses-config.git
+          cloneOnStart: true
+          searchPaths: '{application}'

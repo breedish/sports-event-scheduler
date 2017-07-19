@@ -1,0 +1,25 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+apply plugin: 'com.palantir.docker'
+
+task copyArtifact(type: Copy) {
+    from "${project.buildDir}/libs"
+    into "${project.buildDir}/docker"
+}
+
+task processDockerFiles(type: Copy) {
+    from "src/main/docker"
+    into "${project.buildDir}/docker"
+    filter(ReplaceTokens, tokens: ['app': "${project.name}-${project.version}.jar".toString()])
+}
+processDockerFiles.dependsOn copyArtifact
+
+docker {
+    name "breedish/zsports-${project.name}"
+    tags 'latest'
+    dockerfile project.file("${project.buildDir}/docker/Dockerfile")
+    buildArgs([BUILD_VERSION: '1.0.0'])
+    labels(['name': 'ses'])
+    pull true
+    noCache true
+}.dependsOn processDockerFiles

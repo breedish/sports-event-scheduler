@@ -1,24 +1,16 @@
-apply plugin: 'org.springframework.boot'
-apply plugin: 'com.palantir.docker'
+apply from: "${rootDir}/docker.gradle"
 
 dependencies {
-    dependencies {
-        sharedDependencies.with {
-            compile boot.starterWeb, boot.starterJpa, boot.starterTest, boot.actuator,
-                    misc.hikari, misc.dsProxy, misc.postgresql, misc.flyway, misc.commons, misc.jacksonJsr310,
-                    log.slf4jApi, log.logback
-            testCompile misc.h2
-        }
+    sharedDependencies.with {
+        compile boot.starterWeb, boot.starterJpa, boot.starterTest, boot.actuator,
+                misc.hikari, misc.dsProxy, misc.postgresql, misc.flyway, misc.commons, misc.jacksonJsr310,
+                misc.dozer, misc.dozerjdk8,
+                log.slf4jApi, log.logback
+        testCompile misc.h2
     }
 }
 
-docker {
-    name 'hub.docker.com/breedish/zsports-ses:1.0.0'
-    tags 'latest'
-    dockerfile project.file('src/main/Docker/Dockerfile')
-//    files tasks.distTar.outputs, 'file1.txt', 'file2.txt'
-//    buildArgs([BUILD_VERSION: 'version'])
-    labels(['name': 'ses'])
-    pull true
-    noCache true
+task aws() {
+    doLast { bootRun { systemProperty "spring.profiles.active", "aws" } }
+    finalizedBy bootRun
 }

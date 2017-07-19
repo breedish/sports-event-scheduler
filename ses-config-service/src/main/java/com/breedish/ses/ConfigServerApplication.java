@@ -1,14 +1,14 @@
 package com.breedish.ses;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
-@EnableAutoConfiguration
-public class ZssPlayerServiceApplication {
-
+@EnableConfigServer
+public class ConfigServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZssPlayerServiceApplication.class, args);
+        SpringApplication.run(ConfigServerApplication.class);
     }
 }
+
