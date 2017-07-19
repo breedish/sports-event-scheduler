@@ -26,5 +26,5 @@ before_install:
   - export CONTAINER_IP=52.53.169.60
   - export PLATFORM_TEST_NAME="ses-platform-tests"
 script:
-  - sh infrastructure/travis/build.sh
-  - sh infrastructure/travis/deploy_images.sh
+  - sh infrastructure/travis/scripts/build.sh
+  - sh infrastructure/travis/scripts/deploy_images.sh
